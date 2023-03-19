@@ -7,6 +7,8 @@ WORKDIR /app
 # Copy the requirements file into the container at /app
 COPY requirements.txt .
 
+RUN apt-get install -y mongodb
+
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
