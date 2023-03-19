@@ -15,15 +15,15 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application code into the container at /app
 COPY . .
 
-# Run Unit Tests
-RUN pytest
-
 # Set the environment variable for Flask
 ENV FLASK_APP=app.py
 ENV DB_NAME test
 ENV DB_USER root
 ENV DB_HOST localhost
 ENV DB_PASS root
+
+# Run Unit Tests
+RUN pytest
 
 # Expose port 5000 for the Flask app to listen on
 EXPOSE 5000
