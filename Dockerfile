@@ -20,9 +20,10 @@ RUN pytest
 
 # Set the environment variable for Flask
 ENV FLASK_APP=app.py
-ENV DB_NAME db_name
-ENV DB_USER db_user
-ENV DB_HOST db_host
+ENV DB_NAME test
+ENV DB_USER root
+ENV DB_HOST localhost
+ENV DB_PASS root
 
 # Expose port 5000 for the Flask app to listen on
 EXPOSE 5000
