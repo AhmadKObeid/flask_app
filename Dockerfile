@@ -13,6 +13,9 @@ RUN pip install -r requirements.txt
 # Copy the rest of the application code into the container at /app
 COPY . .
 
+# Run Unit Tests
+RUN pytest
+
 # Set the environment variable for Flask
 ENV FLASK_APP=app.py
 ENV DB_NAME db_name
