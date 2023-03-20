@@ -5,7 +5,7 @@ import os
 
 app = Flask(__name__)
 
-if os.environ.get["ENV"] == "prod":
+if os.environ.get("ENV") == "prod":
     client = MongoClient("mongodb://"+os.environ.get("DB_USER")+":"+os.environ.get("DB_PASS")+"@"+os.environ.get("DB_HOST")+"27017/")
     db = client[os.environ.get("DB_NAME")]
 else:
