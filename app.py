@@ -4,8 +4,14 @@ from bson.objectid import ObjectId
 import os
 
 app = Flask(__name__)
-client = MongoClient("mongodb+srv://"+os.environ.get("DB_USER")+":"+os.environ.get("DB_PASS")+"@"+os.environ.get("DB_HOST")+"/")
-db = client[os.environ.get("DB_NAME")]
+if os.environ.get("PY_ENV") == "prod":
+    client = MongoClient("mongodb+srv://"+os.environ.get("DB_USER")+":"+os.environ.get("DB_PASS")+"@"+os.environ.get("DB_HOST")+"/")
+    db = client[os.environ.get("DB_NAME")]
+else:
+    import mongomock
+    client = mongomock.MongoClient()
+    db = client['test']
+
 users = db['users']
 
 class User:
@@ -47,9 +53,7 @@ def add():
 
 @app.route('/delete/<id>', methods=['GET', 'POST'])
 def delete(id):
-    # convert id string to ObjectId
     obj_id = ObjectId(id)
-    # call delete_user function with converted ObjectId
     delete_user(obj_id)
     return redirect('/')
 
