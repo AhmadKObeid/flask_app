@@ -4,8 +4,9 @@ from bson.objectid import ObjectId
 import os
 
 app = Flask(__name__)
-if os.environ.get("PY_ENV") == "prod":
-    client = MongoClient("mongodb+srv://"+os.environ.get("DB_USER")+":"+os.environ.get("DB_PASS")+"@"+os.environ.get("DB_HOST")+"/")
+
+if os.environ.get["ENV"] == "prod":
+    client = MongoClient("mongodb://"+os.environ.get("DB_USER")+":"+os.environ.get("DB_PASS")+"@"+os.environ.get("DB_HOST")+"27017/")
     db = client[os.environ.get("DB_NAME")]
 else:
     import mongomock
@@ -13,7 +14,6 @@ else:
     db = client['test']
 
 users = db['users']
-
 class User:
     def __init__(self, username, dob, display_name):
         self.username = username
