@@ -4,7 +4,7 @@ from bson.objectid import ObjectId
 import os
 
 app = Flask(__name__)
-client = MongoClient("mongodb+srv://"+os.environ.get("DB_USER")+":"+os.environ.get("DB_PASS")+"@"+os.environ.get("DB_HOST")+"/")
+client = MongoClient("mongodb://"+os.environ.get("DB_USER")+":"+os.environ.get("DB_PASS")+"@"+os.environ.get("DB_HOST")+"27017/")
 db = client[os.environ.get("DB_NAME")]
 users = db['users']
 
